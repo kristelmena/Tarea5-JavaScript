@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea: JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="javascript.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Ejemplos de Sintaxis en JavaScript</h1>
+        <nav>
+            <ul>
+                <li><a href="#control-flujo">Control de Flujo</a></li>
+                <li><a href="#bucles-interacion">Bucles e Interación</a></li>
+                <li><a href="#funciones">Funciones</a></li>
+                <li><a href="#expresiones-operadores">Expresiones y Operadores</a></li>
+                <li><a href="#numeros-fechas">Números y Fechas</a></li>
+                <li><a href="#formateo-fechas">Formateo de Texto</a></li>
+                <li><a href="#colecciones">Colecciones Indexadas</a></li>
+                <li><a href="#dom">DOM</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="control-flujo">
+            <h2>Control de Flujo y Manejo de Errores</h2>
+            <div class="controles">
+                <h3>if...else</h3>
+                <p>Ejemplo básico de condicional <code>if...else</code>:</p>
+                <pre><code>
+                    let edad = 18;
+                    if (edad >= 18) {
+                        console.log("Eres mayor de edad.");
+                    } else {
+                        console.log("Eres menor de edad".);
+                    }
+                </code></pre>
+
+                <label for="edad">Ingresa tu edad:</label>
+                <input type="number" id="edad" placeholder="edad">
+                <button onclick="ejemploIfElse()">Ejecutar</button>
+                <p id="resultado"></p>
+            </div>
+
+            <div class="controles">
+                <h3>Switch</h3>
+                <p>Ejemplo básico de condicional <code>switch</code>:</p>
+                <pre><code>
+                    let diaNumero = 1;
+                    switch (diaNumero) {
+                        case 1:
+                            console.log("Lunes");
+                            break;
+                        case 2:
+                            console.log("Martes");
+                            break;
+                        case 3:
+                            console.log("Miércoles");
+                            break;
+                        case 4:
+                            console.log("Jueves");
+                            break;
+                        case 5:
+                            console.log("Viernes");
+                            break;
+                        case 6:
+                            console.log("Sábado");
+                            break;
+                        case 7:
+                            console.log("Domingo");
+                            break;
+                        default:
+                            console.log("Número de día no válido");
+                    }
+                </code></pre>
+                <label for="dia">Ingresa un número del 1 al 7 para el día:</label>
+                <input type="number" id="dia" placeholder="Número de día">
+                <button onclick="ejemploSwitch()">Ejecutar</button>
+                <p id="resultadoSwitch"></p>
+            </div>
+
+            <div class="controles">
+                <div class="InformacionGeneral">
+                    <h3>Objetos Error</h3>
+                    <p>Ejemplo básico de <code>Objetos Error</code>:</p>
+                    <h4>Sintaxis de cada error:</h4>
+                </div>
+
+                <h5>Error Genérico:</h5>
+                <p><strong>Descripción:</strong> Un error general que representa una situación problemática no
+                    específica.</p>
+                <pre><code>
+                    try {
+                        throw new Error("Este es un error genérico");
+                    } catch (e) {
+                        console.error(e.name + ": " + e.message);
+                    }
+                </code></pre>
+                <button onclick="generarError()">Error Genérico</button>
+                <p id="resultadoErrorGenerico"></p>
+
+                <h5>TypeError:</h5>
+                <p><strong>Descripción:</strong> Indica que un valor no es del tipo esperado o que se está accediendo a
+                    un método inexistente.</p>
+                <pre><code>
+                    try {
+                        let num = 5;
+                        num.toUpperCase();
+                    } catch (e) {
+                        console.error(e.name + ": " + e.message);
+                    }
+                </code></pre>
+                <button onclick="generarTypeError()">TypeError</button>
+                <p id="resultadoErrorType"></p>
+
+                <h5>ReferenceError:</h5>
+                <p><strong>Descripción:</strong> Ocurre cuando se hace referencia a una variable que no ha sido
+                    declarada.</p>
+                <pre><code>
+                    try {
+                        console.log(variableInexistente);
+                    } catch (e) {
+                        console.error(e.name + ": " + e.message);
+                    }
+                </code></pre>
+                <button onclick="generarReferenceError()">ReferenceError</button>
+                <p id="resultadoErrorReference"></p>
+
+                <h5>RangeError:</h5>
+                <p><strong>Descripción:</strong> Sucede cuando un valor está fuera del rango permitido o lógico.</p>
+                <pre><code>
+                    try {
+                        let numero = 1;
+                        numero.toFixed(101);
+                    } catch (e) {
+                        console.error(e.name + ": " + e.message);
+                    }
+                </code></pre>
+                <button onclick="generarRangeError()">RangeError</button>
+                <p id="resultadoErrorRange"></p>
+
+                <h5>SyntaxError:</h5>
+                <p><strong>Descripción:</strong> Se lanza cuando el código JavaScript tiene una sintaxis incorrecta.</p>
+                <pre><code>
+                    try {
+                        eval("alert('Hola"));
+                    } catch (e) {
+                        console.error(e.name + ": " + e.message);
+                    }
+                </code></pre>
+                <button onclick="generarSyntaxError()">SyntaxError</button>
+                <p id="resultadoErrorSyntax"></p>
+
+                <h5>URIError:</h5>
+                <p><strong>Descripción:</strong> Se lanza cuando las funciones de URI reciben un URI mal formado.</p>
+                <pre><code>
+                    try {
+                        decodeURIComponent("%");
+                    } catch (e) {
+                        console.error(e.name + ": " + e.message);
+                    }
+                </code></pre>
+                <button onclick="generarURIError()">URIError</button>
+                <p id="resultadoErrorURI"></p>
+
+                <h5>AggregateError:</h5>
+                <p><strong>Descripción:</strong> Agrupa múltiples errores que ocurren simultáneamente o en operaciones
+                    de múltiples resultados.</p>
+                <pre><code>
+                    try {
+                        throw new AggregateError([
+                            new Error("Primer error"),
+                            new TypeError("Error de tipo")
+                        ], "Múltiples errores ocurrieron");
+                    } catch (e) {
+                        console.error(e.name + ": " + e.message);
+                        e.errors.forEach(err => console.error(err.name + ": " + err.message));
+                    }
+                </code></pre>
+                <button onclick="generarAggregateError()">AggregateError</button>
+                <p id="resultadoErrorAggregate"></p>
+            </div>
+        </section>
+
+        <section id="bucles-interacion">
+            <div class="InformacionGeneral">
+                <h2>Bucles e Iteración</h2>
+            </div>
+            <div class="bucles">
+                <div class="InformacionGeneral">
+                    <h3>For</h3>
+                    <p>Ejemplo básico de bucles e Iteración <code>For</code>:</p>
+                </div>
+                <pre><code>
+                // Bucle for básico para imprimir números del 1 al 5
+                    for (let i = 1; i <= 5; i++) {
+                        console.log("Número:", i);
+                    }
+                </code></pre>
+                <button onclick="ejecutarBucleFor()">Ejecutar Bucle For</button>
+                <p id="resultadoBucleFor"></p>
+            </div>
+
+            <div class="bucles">
+                <div class="InformacionGeneral">
+                    <h3>While</h3>
+                    <p>Ejemplo básico de bucles e Iteración <code>While</code>:</p>
+                </div>
+                <pre><code>
+                    // Bucle while básico para imprimir números del 1 al 5
+                    let contador = 1;
+                    while (contador <= 5) {
+                        console.log("Número:", contador);
+                        contador++;
+                    }
+                </code></pre>
+                <button onclick="ejecutarBucleWhile()">Ejecutar Bucle While</button>
+                <p id="resultadoBucleWhile"></p>
+            </div>
+
+            <div class="bucles">
+                <div class="InformacionGeneral">
+                    <h3>Do...While</h3>
+                    <p>Ejemplo básico de bucles e Iteración <code>Do...While</code>:</p>
+                </div>
+                <pre><code>
+                    // Bucle do...while básico para imprimir números del 1 al 5
+                    let contador = 1;
+                    do {
+                        console.log("Número:", contador);
+                        contador++;
+                    } while (contador <= 5);
+                </code></pre>
+                <button onclick="ejecutarBucleDoWhile()">Ejecutar Bucle Do...While</button>
+                <p id="resultadoBucleDoWhile"></p>
+            </div>
+        </section>
+
+        <section id="funciones">
+            <div class="InformacionGeneral">
+                <h2>Funciones</h2>
+            </div>
+            <div class="funciones">
+                <div class="InformacionGeneral">
+                    <h3>Definir Funciones</h3>
+                    <p>Ejemplo básico para definir una función:</p>
+                </div>
+                <pre><code>
+                    // Definición de una función que suma dos números
+                    function sumar(a, b) {
+                        return a + b;
+                    }
+                </code></pre>
+            </div>
+            <div class="funciones">
+                <div class="InformacionGeneral">
+                    <h3>Llamar Funciones</h3>
+                    <p>Ejemplo básico para llamar una función:</p>
+                </div>
+                <pre><code>
+                    // Llamada a la función sumar con dos argumentos
+                    let resultado = sumar(3, 4);
+                    console.log("Resultado de la suma:", resultado);
+                </code></pre>
+                <button onclick="llamarFuncion()">Llamar Función</button>
+                <p id="resultadoFuncion"></p>
+            </div>
+        </section>
+        <section id="expresiones-operadores">
+            <div class="InformacionGeneral">
+                <h2>Expresiones y Operadores</h2>
+            </div>
+
+            <!-- Asignación y Comparación -->
+            <div class="operadores">
+                <div class="InformacionGeneral">
+                    <h3>Asignación y Comparación</h3>
+                    <p>Ejemplo básico de <code>Asignación</code> y <code>Comparación</code>:</p>
+                </div>
+                <pre><code>
+                    // Asignación y comparación
+                    let x = 5; // Asignación
+                    let y = 10; 
+                    let comparacion = (x === y); // Comparación estricta (===)
+                    console.log("¿x es igual a y?", comparacion);
+                </code></pre>
+                <button onclick="ejecutarAsignacionComparacion()">Ejecutar Asignación y Comparación</button>
+                <p id="resultadoAsignacionComparacion"></p>
+            </div>
+
+            <!-- Operadores aritméticos -->
+            <div class="operadores">
+                <div class="InformacionGeneral">
+                    <h3>Operadores Aritméticos</h3>
+                    <p>Ejemplo básico de <code>Operadores Aritméticos</code>:</p>
+                </div>
+                <pre><code>
+                    // Operadores aritméticos básicos
+                    let a = 10;
+                    let b = 3;
+                    let suma = a + b;
+                    let resta = a - b;
+                    let multiplicacion = a * b;
+                    let division = a / b;
+                    console.log("Suma:", suma);
+                    console.log("Resta:", resta);
+                    console.log("Multiplicación:", multiplicacion);
+                    console.log("División:", division);
+                </code></pre>
+                <button onclick="ejecutarOperadoresAritmeticos()">Ejecutar Operadores Aritméticos</button>
+                <p id="resultadoOperadoresAritmeticos"></p>
+            </div>
+
+            <!-- Operadores lógicos -->
+            <div class="operadores">
+                <div class="InformacionGeneral">
+                    <h3>Operadores Lógicos</h3>
+                    <p>Ejemplo básico de <code>Operadores Lógicos</code>:</p>
+                </div>
+                <pre><code>
+                    // Operadores lógicos básicos
+                    let valor1 = true;
+                    let valor2 = false;
+                    let resultadoAND = valor1 && valor2; // AND lógico
+                    let resultadoOR = valor1 || valor2;  // OR lógico
+                    let resultadoNOT = !valor1;          // NOT lógico
+                    console.log("Resultado AND:", resultadoAND);
+                    console.log("Resultado OR:", resultadoOR);
+                    console.log("Resultado NOT:", resultadoNOT);
+                </code></pre>
+                <button onclick="ejecutarOperadoresLogicos()">Ejecutar Operadores Lógicos</button>
+                <p id="resultadoOperadoresLogicos"></p>
+            </div>
+        </section>
+
+        <section id="numeros-fechas">
+            <div class="InformacionGeneral">
+                <h2>Números y Fechas</h2>
+            </div>
+
+            <!-- Objeto Number -->
+            <div class="objetos">
+                <div class="InformacionGeneral">
+                    <h3>Objeto Number</h3>
+                    <p>Ejemplo básico del <code>Objeto Number</code>:</p>
+                </div>
+                <pre><code>
+                    // Objeto Number
+                    let numero = 123.456;
+                    let esFinito = Number.isFinite(numero); // Verificar si es finito
+                    let entero = Number.parseInt(numero); // Convertir a entero
+                    let fijo = numero.toFixed(2); // Redondear a 2 decimales
+                    console.log("Número:", numero);
+                    console.log("¿Es finito?", esFinito);
+                    console.log("Parte entera:", entero);
+                    console.log("Número con 2 decimales:", fijo);
+                </code></pre>
+                <button onclick="ejecutarObjetoNumber()">Ejecutar Objeto Number</button>
+                <p id="resultadoObjetoNumber"></p>
+            </div>
+
+            <!-- Objeto Math -->
+            <div class="objetos">
+                <div class="InformacionGeneral">
+                    <h3>Objeto Math</h3>
+                    <p>Ejemplo básico del <code>Objeto Math</code>:</p>
+                </div>
+                <pre><code>
+                    // Objeto Math
+                    let raiz = Math.sqrt(16); // Raíz cuadrada de 16
+                    let potencia = Math.pow(2, 3); // 2 elevado a la potencia de 3
+                    let aleatorio = Math.random(); // Número aleatorio entre 0 y 1
+                    console.log("Raíz cuadrada de 16:", raiz);
+                    console.log("2 elevado a 3:", potencia);
+                    console.log("Número aleatorio:", aleatorio);
+                </code></pre>
+                <button onclick="ejecutarObjetoMath()">Ejecutar Objeto Math</button>
+                <p id="resultadoObjetoMath"></p>
+            </div>
+
+            <!-- Objeto Date -->
+            <div class="objetos">
+                <div class="InformacionGeneral">
+                    <h3>Objeto Date</h3>
+                    <p>Ejemplo básico del <code>Objeto Date</code>:</p>
+                </div>
+                <pre><code>
+                    // Objeto Date
+                    let fechaActual = new Date(); // Fecha y hora actual
+                    let anio = fechaActual.getFullYear(); // Obtener el año actual
+                    let mes = fechaActual.getMonth() + 1; // Obtener el mes actual (0-11, se suma 1)
+                    let dia = fechaActual.getDate(); // Obtener el día actual
+                    console.log("Fecha actual:", fechaActual);
+                    console.log("Año actual:", anio);
+                    console.log("Mes actual:", mes);
+                    console.log("Día actual:", dia);
+                </code></pre>
+                <button onclick="ejecutarObjetoDate()">Ejecutar Objeto Date</button>
+                <p id="resultadoObjetoDate"></p>
+            </div>
+        </section>
+
+        <section id="formateo-texto">
+            <div class="InformacionGeneral">
+                <h2>Formateo de Texto</h2>
+            </div>
+
+            <!-- Cadenas Literales -->
+            <div class="cadenas">
+                <div class="InformacionGeneral">
+                    <h3>Cadenas Literales</h3>
+                    <p>Ejemplo básico de <code>Cadenas Literales</code>:</p>
+                </div>
+                <pre><code>
+                    // Uso de Cadenas Literales (Template Literals)
+                    let nombre = "Juan";
+                    let edad = 25;
+                    let mensaje = `Hola, mi nombre es ${nombre} y tengo ${edad} años.`;
+                    console.log(mensaje);
+                </code></pre>
+                <button onclick="ejecutarCadenasLiterales()">Ejecutar Cadenas Literales</button>
+                <p id="resultadoCadenasLiterales"></p>
+            </div>
+
+            <!-- Objeto String -->
+            <div class="cadenas">
+                <div class="InformacionGeneral">
+                    <h3>Objeto String</h3>
+                    <p>Ejemplo básico del <code>Objeto String</code>:</p>
+                </div>
+                <pre><code>
+                    // Operaciones básicas con el Objeto String
+                    let texto = "Hola Mundo";
+                    let longitud = texto.length; // Longitud del texto
+                    let mayusculas = texto.toUpperCase(); // Convertir a mayúsculas
+                    let reemplazo = texto.replace("Mundo", "JavaScript"); // Reemplazar parte del texto
+                    console.log("Texto original:", texto);
+                    console.log("Longitud:", longitud);
+                    console.log("En mayúsculas:", mayusculas);
+                    console.log("Reemplazo:", reemplazo);
+                </code></pre>
+                <button onclick="ejecutarObjetoString()">Ejecutar Objeto String</button>
+                <p id="resultadoObjetoString"></p>
+            </div>
+        </section>
+
+        <section id="colecciones-indexadas">
+            <div class="InformacionGeneral">
+                <h2>Colecciones Indexadas</h2>
+            </div>
+
+            <!-- Arreglos -->
+            <div class="colecciones">
+                <div class="InformacionGeneral">
+                    <h3>Arreglos</h3>
+                    <p>Ejemplo básico de un <code>Arreglo</code>:</p>
+                </div>
+                <pre><code>
+            // Crear y manipular un arreglo
+            let frutas = ["Manzana", "Banana", "Cereza"];
+            frutas.push("Mango"); // Agregar un elemento al final
+            let primeraFruta = frutas[0]; // Acceder al primer elemento
+            let longitud = frutas.length; // Obtener la longitud del arreglo
+            console.log("Arreglo de frutas:", frutas);
+            console.log("Primera fruta:", primeraFruta);
+            console.log("Longitud del arreglo:", longitud);
+        </code></pre>
+                <button onclick="ejecutarArreglos()">Ejecutar Arreglos</button>
+                <p id="resultadoArreglos"></p>
+            </div>
+
+            <!-- Arreglos Tipados -->
+            <div class="colecciones">
+                <div class="InformacionGeneral">
+                    <h3>Arreglos Tipados</h3>
+                    <p>Ejemplo básico de un <code>Arreglo Tipado</code>:</p>
+                </div>
+                <pre><code>
+            // Crear y manipular un arreglo tipado (Typed Array)
+            let buffer = new ArrayBuffer(16); // Crear un buffer de 16 bytes
+            let vistaInt32 = new Int32Array(buffer); // Crear una vista de 32 bits
+            vistaInt32[0] = 42; // Asignar un valor al primer elemento
+            vistaInt32[1] = 7; // Asignar un valor al segundo elemento
+            console.log("Arreglo Tipado Int32:", vistaInt32);
+            console.log("Elemento 0:", vistaInt32[0]);
+            console.log("Elemento 1:", vistaInt32[1]);
+        </code></pre>
+                <button onclick="ejecutarArreglosTipados()">Ejecutar Arreglos Tipados</button>
+                <p id="resultadoArreglosTipados"></p>
+            </div>
+        </section>
+
+        <section id="dom">
+            <div class="InformacionGeneral">
+                <h2>Manipulación del DOM</h2>
+            </div>
+        
+            <!-- Encontrar elementos HTML por ID -->
+            <div class="dom-elementos">
+                <div class="InformacionGeneral">
+                    <h3>Encontrar elementos HTML por ID</h3>
+                    <p>Ejemplo de encontrar un elemento por su <code>ID</code>:</p>
+                </div>
+                <button onclick="encontrarPorID()">Encontrar por ID</button>
+                <p id="elementoID">Este es un párrafo con ID 'elementoID'.</p>
+                <p id="resultadoID"></p>
+            </div>
+        
+            <!-- Encontrar elementos HTML por nombre de etiqueta -->
+            <div class="dom-elementos">
+                <div class="InformacionGeneral">
+                    <h3>Encontrar elementos HTML por nombre de etiqueta</h3>
+                    <p>Ejemplo de encontrar elementos por nombre de <code>etiqueta</code>:</p>
+                </div>
+                <button onclick="encontrarPorEtiqueta()">Encontrar por Etiqueta</button>
+                <p class="elementoEtiqueta">Párrafo 1 (Etiqueta p)</p>
+                <p class="elementoEtiqueta">Párrafo 2 (Etiqueta p)</p>
+                <p id="resultadoEtiqueta"></p>
+            </div>
+        
+            <!-- Encontrar elementos HTML por nombre de clase -->
+            <div class="dom-elementos">
+                <div class="InformacionGeneral">
+                    <h3>Encontrar elementos HTML por nombre de clase</h3>
+                    <p>Ejemplo de encontrar elementos por nombre de <code>clase</code>:</p>
+                </div>
+                <button onclick="encontrarPorClase()">Encontrar por Clase</button>
+                <div class="elementoClase">Div 1 (Clase: elementoClase)</div>
+                <div class="elementoClase">Div 2 (Clase: elementoClase)</div>
+                <p id="resultadoClase"></p>
+            </div>
+        
+            <!-- Encontrar elementos HTML mediante selectores CSS -->
+            <div class="dom-elementos">
+                <div class="InformacionGeneral">
+                    <h3>Encontrar elementos HTML mediante selectores CSS</h3>
+                    <p>Ejemplo de encontrar elementos mediante <code>selectores CSS</code>:</p>
+                </div>
+                <button onclick="encontrarPorSelector()">Encontrar por Selector CSS</button>
+                <div class="contenedor-selector">
+                    <p class="selectorCSS">Párrafo dentro del contenedor</p>
+                </div>
+                <p id="resultadoSelector"></p>
+            </div>
+        
+            <!-- Encontrar elementos HTML por colecciones de objetos HTML -->
+            <div class="dom-elementos">
+                <div class="InformacionGeneral">
+                    <h3>Encontrar elementos HTML por colecciones de objetos HTML</h3>
+                    <p>Ejemplo de encontrar elementos por colecciones de <code>objetos HTML</code>:</p>
+                </div>
+                <button onclick="encontrarPorColeccion()">Encontrar por Colección</button>
+                <ul class="coleccionHTML">
+                    <li>Elemento 1</li>
+                    <li>Elemento 2</li>
+                    <li>Elemento 3</li>
+                </ul>
+                <p id="resultadoColeccion"></p>
+            </div>
+        </section>
+        
+
+
+
+    </main>
+    <footer>
+        <p>Desarrollado por Kristel Mena Jiménez</p>
+    </footer>
+</body>
+
+</html>
